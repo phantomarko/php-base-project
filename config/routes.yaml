@@ -1,0 +1,3 @@
+api:
+  prefix: /api
+  resource: '../src/Ui/Api/Config/routes.yaml'

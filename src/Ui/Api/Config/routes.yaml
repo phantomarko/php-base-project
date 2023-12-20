@@ -1,0 +1,12 @@
+create_pokemon:
+  path: /pokemon
+  controller: App\Ui\Api\Controller\CreatePokemonController
+  methods: POST
+list_pokemon:
+  path: /pokemon
+  controller: App\Ui\Api\Controller\ListPokemonController
+  methods: GET
+get_pokemon:
+  path: /pokemon/{uuid}
+  controller: App\Ui\Api\Controller\GetPokemonController
+  methods: GET
