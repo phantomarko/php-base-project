@@ -80,9 +80,19 @@ List doctrine commands
 php bin/console list doctrine
 ```
 
-### Vendor tools
+### Tools
 
 Run Psalm
 ```shell
 ./vendor/bin/psalm --no-cache
+```
+
+Run PHP Code Sniffer
+```shell
+./vendor/bin/phpcs --no-cache
+```
+
+Run PHPUnit
+```shell
+./vendor/bin/phpunit
 ```

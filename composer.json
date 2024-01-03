@@ -55,6 +55,17 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "code:check": [
+            "@code:analyze",
+            "@code:test"
+        ],
+        "code:analyze": [
+            "./vendor/bin/psalm --no-cache",
+            "./vendor/bin/phpcs --no-cache"
+        ],
+        "code:test": [
+            "./vendor/bin/phpunit"
         ]
     },
     "conflict": {
@@ -69,6 +80,7 @@
     "require-dev": {
         "captainhook/captainhook": "^5.19",
         "phpunit/phpunit": "^10.5",
+        "squizlabs/php_codesniffer": "^3.8",
         "vimeo/psalm": "^5.18"
     }
 }
