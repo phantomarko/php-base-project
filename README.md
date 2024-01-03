@@ -79,3 +79,10 @@ List doctrine commands
 ```shell
 php bin/console list doctrine
 ```
+
+### Vendor tools
+
+Run Psalm
+```shell
+./vendor/bin/psalm --no-cache
+```
