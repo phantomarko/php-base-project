@@ -8,10 +8,15 @@ PHP Base Project
 - Docker 24 and Docker Compose 2
 - Composer 2
 
-## Project Features
+## Characteristics
 
-Source:
-- Symfony as base framework
+**Architecture**
+- SOLID
+- DDD
+- Hexagonal Architecture
+
+**Packages**
+- Symfony (base framework)
   - Router
   - Dependency injection
   - HTTP requests and responses
@@ -19,7 +24,7 @@ Source:
   - ORM
   - Migrations
 
-Tools:
+**Tools**
 - Tests
   - PHPUnit
 - Analysis
@@ -28,7 +33,7 @@ Tools:
 - Git
   - Captain hook
 
-Environment:
+**Environment**
 - Docker
   - MySQL
   - Adminer
