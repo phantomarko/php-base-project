@@ -8,6 +8,33 @@ PHP Base Project
 - Docker 24 and Docker Compose 2
 - Composer 2
 
+## Project Features
+
+Source:
+- Symfony as base framework
+  - Router
+  - Dependency injection
+  - HTTP requests and responses
+- Doctrine
+  - ORM
+  - Migrations
+
+Tools:
+- Tests
+  - PHPUnit
+- Analysis
+  - Psalm
+  - PHP Code Sniffer
+- Git
+  - Captain hook
+
+Environment:
+- Docker
+  - MySQL
+  - Adminer
+- Symfony CLI
+  - Web server 
+
 ## Set Up
 
 1. Install composer dependencies
@@ -81,6 +108,11 @@ php bin/console list doctrine
 ```
 
 ### Tools
+
+Analyze and test project
+```shell
+composer code:check
+```
 
 Run Psalm
 ```shell
