@@ -10,4 +10,10 @@ trait StringValidationTrait
     {
         return empty(trim($string));
     }
+
+    public function isLengthBetweenValues(string $string, int $min, int $max): bool
+    {
+        $length = strlen($string);
+        return $min <= $length && $length <= $max;
+    }
 }
