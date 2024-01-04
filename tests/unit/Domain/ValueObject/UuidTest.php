@@ -45,7 +45,7 @@ class UuidTest extends TestCase
     {
         return [
             'empty string' => [''],
-            'blank spaces' => ['    '],
+            'blank spaces' => [str_repeat(' ', Uuid::MIN_LENGTH)],
             'shorter than min length' => [str_repeat('s', Uuid::MIN_LENGTH - 1)],
             'larger than max length' => [str_repeat('s', Uuid::MAX_LENGTH + 1)],
             'only "-"' => [str_repeat('-', Uuid::MIN_LENGTH)],
