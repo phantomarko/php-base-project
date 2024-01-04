@@ -8,7 +8,7 @@ use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\Uuid;
 use App\Tests\Fixtures\StringHelper;
 
-class ValueObjectMother
+final class ValueObjectMother
 {
     use StringHelper;
 
