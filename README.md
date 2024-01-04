@@ -42,22 +42,27 @@ PHP Base Project
 
 ## Set Up
 
-1. Install composer dependencies
+1. Create a copy of `.env.example` as `.env` and assign a value to `APP_SECRET`
+    ```shell
+    cp .env.example .env
+    ```
+
+2. Install composer dependencies
     ```shell
     composer install
     ```
 
-2. Build and start docker containers
+3. Build and start docker containers
     ```shell
     docker compose build --no-cache --pull && docker compose up -d
     ```
 
-3. Start web server
+4. Start web server
     ```shell
     symfony server:start
     ```
    
-4. Access the web server or the containers using 127.0.0.1 or the machine IP as host
+5. Access the web server or the containers using 127.0.0.1 or the machine IP as host
     - Web. http://172.18.91.172:8000
     - Adminer. http://172.18.91.172:8080/?server=db&username=Us3r&db=storage
 
@@ -100,19 +105,12 @@ symfony server:ca:install
 symfony server:ca:uninstall
 ```
 
-### Symfony Console
+### Tools
 
-See routes
+Show routes
 ```shell
 php bin/console debug:router
 ```
-
-List doctrine commands
-```shell
-php bin/console list doctrine
-```
-
-### Tools
 
 Analyze and test project (psalm, phpcs and phpunit)
 ```shell
