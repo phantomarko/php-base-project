@@ -16,4 +16,9 @@ trait StringValidationTrait
         $length = strlen($string);
         return $min <= $length && $length <= $max;
     }
+
+    public function isAlphanumericWithOptionalHyphens(string $string): bool
+    {
+        return (bool)preg_match('/^[a-zA-Z0-9-_]*[a-zA-Z0-9]+[a-zA-Z0-9-_]*$/', $string);
+    }
 }

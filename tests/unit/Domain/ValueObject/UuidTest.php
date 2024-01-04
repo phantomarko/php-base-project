@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Domain\ValueObject;
 use App\Domain\Exception\UuidIsNotValidException;
 use App\Domain\ValueObject\Uuid;
 use App\Tests\Fixtures\Domain\ValueObject\ValueObjectMother;
-use PHPUnit\Framework\TestCase;
+use App\Tests\Unit\TestCase;
 
 class UuidTest extends TestCase
 {
@@ -24,6 +24,7 @@ class UuidTest extends TestCase
     public static function createSuccessfullyProvider(): array
     {
         return [
+            'UUID RFC 4122' => [self::generateUuidRfc4122()],
             'equals to min length' => [str_repeat('s', Uuid::MIN_LENGTH)],
             'min length plus one' => [str_repeat('s', Uuid::MIN_LENGTH + 1)],
             'max length minus one' => [str_repeat('s', Uuid::MAX_LENGTH - 1)],
@@ -47,6 +48,8 @@ class UuidTest extends TestCase
             'blank spaces' => ['    '],
             'shorter than min length' => [str_repeat('s', Uuid::MIN_LENGTH - 1)],
             'larger than max length' => [str_repeat('s', Uuid::MAX_LENGTH + 1)],
+            'only "-"' => [str_repeat('-', Uuid::MIN_LENGTH)],
+            'only "_"' => [str_repeat('_', Uuid::MIN_LENGTH)],
         ];
     }
 }
