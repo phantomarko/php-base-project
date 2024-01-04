@@ -114,7 +114,7 @@ php bin/console list doctrine
 
 ### Tools
 
-Analyze and test project
+Analyze and test project (psalm, phpcs and phpunit)
 ```shell
 composer code:check
 ```
