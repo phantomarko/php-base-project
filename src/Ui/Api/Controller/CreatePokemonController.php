@@ -4,7 +4,7 @@ namespace App\Ui\Api\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class CreatePokemonController
+final class CreatePokemonController
 {
     public function __invoke()
     {
