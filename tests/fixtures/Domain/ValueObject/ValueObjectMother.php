@@ -8,6 +8,7 @@ use App\Domain\ValueObject\AbstractCollection;
 use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\PokemonName;
 use App\Domain\ValueObject\PokemonType;
+use App\Domain\ValueObject\PokemonTypeCollection;
 use App\Domain\ValueObject\Uuid;
 use App\Tests\Fixtures\StringHelper;
 
@@ -35,8 +36,13 @@ final class ValueObjectMother
         return new PokemonType($value ?? PokemonType::ELECTRIC);
     }
 
-    public static function makeCollection(array $array): AbstractCollection
+    public static function makePokemonTypeCollection(?array $array = null): PokemonTypeCollection
     {
-        return new MockCollection($array);
+        return new PokemonTypeCollection($array ?? []);
+    }
+
+    public static function makeCollection(?array $array = null): AbstractCollection
+    {
+        return new MockCollection($array ?? []);
     }
 }

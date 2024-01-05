@@ -42,7 +42,7 @@ final class PokemonType extends AbstractStringValueObject
         self::GHOST,
         self::DRAGON,
         self::DARK,
-        self::STEEL
+        self::STEEL,
     ];
 
     protected function validate(string $value): void
