@@ -8,6 +8,7 @@ use App\Domain\Entity\Pokemon;
 use App\Domain\Entity\PokemonSpecie;
 use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\PokemonName;
+use App\Domain\ValueObject\PokemonNickname;
 use App\Domain\ValueObject\PokemonTypeCollection;
 use App\Domain\ValueObject\Uuid;
 use App\Tests\Fixtures\Domain\ValueObject\ValueObjectMother;
@@ -38,17 +39,15 @@ final class EntityMother
         );
     }
 
-    public static function makePokemon(?Uuid $uuid = null): Pokemon
-    {
+    public static function makePokemon(
+        ?Uuid $uuid = null,
+        ?PokemonSpecie $specie = null,
+        ?PokemonNickname $nickname = null
+    ): Pokemon {
         return new Pokemon(
-            uuid: $uuid
-        );
-    }
-
-    public static function makeDefaultPokemon(?Uuid $uuid = null): Pokemon
-    {
-        return new Pokemon(
-            uuid: $uuid ?? ValueObjectMother::makeUuid()
+            uuid: $uuid,
+            specie: $specie,
+            nickname: $nickname
         );
     }
 }

@@ -24,7 +24,7 @@ class PokemonNameTest extends TestCase
     public static function createSuccessfullyProvider(): array
     {
         return [
-            'real name' => ['PIKACHU'],
+            'real name' => ['SQUIRTLE'],
             'equals to min length' => [str_repeat('s', PokemonName::MIN_LENGTH)],
             'min length plus one' => [str_repeat('s', PokemonName::MIN_LENGTH + 1)],
             'max length minus one' => [str_repeat('s', PokemonName::MAX_LENGTH - 1)],
@@ -49,5 +49,14 @@ class PokemonNameTest extends TestCase
             'shorter than min length' => [str_repeat('s', PokemonName::MIN_LENGTH - 1)],
             'larger than max length' => [str_repeat('s', PokemonName::MAX_LENGTH + 1)],
         ];
+    }
+
+    public function testConvertToNickname(): void
+    {
+        $value = 'CHARMANDER';
+        $name = ValueObjectMother::makePokemonName($value);
+        $nickname = $name->toNickname();
+
+        $this->assertEquals($value, $nickname->getValue());
     }
 }

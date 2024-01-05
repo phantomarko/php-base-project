@@ -6,7 +6,7 @@ namespace App\Domain\ValueObject;
 
 use App\Domain\Exception\PokemonNameIsNotValidException;
 
-final class PokemonName extends AbstractStringValueObject
+class PokemonName extends AbstractStringValueObject
 {
     public const MIN_LENGTH = 3;
     public const MAX_LENGTH = 20;
@@ -15,9 +15,19 @@ final class PokemonName extends AbstractStringValueObject
     {
         if (
             $this->isEmptyString($value)
-            || !$this->isLengthBetweenValues($value, self::MIN_LENGTH, self::MAX_LENGTH)
+            || !$this->isLengthBetweenValues($value, static::MIN_LENGTH, static::MAX_LENGTH)
         ) {
-            throw PokemonNameIsNotValidException::make();
+            $this->throwInvalidException();
         }
+    }
+
+    protected function throwInvalidException(): void
+    {
+        throw PokemonNameIsNotValidException::make();
+    }
+
+    public function toNickname(): PokemonNickname
+    {
+        return new PokemonNickname($this->getValue());
     }
 }

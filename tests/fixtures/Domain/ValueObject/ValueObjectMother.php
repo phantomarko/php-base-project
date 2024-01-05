@@ -7,6 +7,7 @@ namespace App\Tests\Fixtures\Domain\ValueObject;
 use App\Domain\ValueObject\AbstractCollection;
 use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\PokemonName;
+use App\Domain\ValueObject\PokemonNickname;
 use App\Domain\ValueObject\PokemonType;
 use App\Domain\ValueObject\PokemonTypeCollection;
 use App\Domain\ValueObject\Uuid;
@@ -29,6 +30,11 @@ final class ValueObjectMother
     public static function makePokemonName(?string $value = null): PokemonName
     {
         return new PokemonName($value ?? 'PIKACHU');
+    }
+
+    public static function makePokemonNickname(?string $value = null): PokemonNickname
+    {
+        return new PokemonNickname($value ?? 'SPARKY');
     }
 
     public static function makePokemonType(?string $value = null): PokemonType
