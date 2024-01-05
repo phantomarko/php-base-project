@@ -38,7 +38,7 @@ final class ValueObjectMother
 
     public static function makePokemonTypeCollection(?array $array = null): PokemonTypeCollection
     {
-        return new PokemonTypeCollection($array ?? []);
+        return new PokemonTypeCollection($array ?? [self::makePokemonType()]);
     }
 
     public static function makeCollection(?array $array = null): AbstractCollection
