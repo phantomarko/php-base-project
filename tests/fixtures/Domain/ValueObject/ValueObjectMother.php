@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures\Domain\ValueObject;
 
+use App\Domain\ValueObject\AbstractCollection;
 use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\PokemonName;
 use App\Domain\ValueObject\PokemonType;
@@ -32,5 +33,10 @@ final class ValueObjectMother
     public static function makePokemonType(?string $value = null): PokemonType
     {
         return new PokemonType($value ?? PokemonType::ELECTRIC);
+    }
+
+    public static function makeCollection(array $array): AbstractCollection
+    {
+        return new MockCollection($array);
     }
 }
