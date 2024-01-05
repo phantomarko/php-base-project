@@ -6,6 +6,7 @@ namespace App\Tests\Fixtures\Domain\ValueObject;
 
 use App\Domain\ValueObject\Id;
 use App\Domain\ValueObject\PokemonName;
+use App\Domain\ValueObject\PokemonType;
 use App\Domain\ValueObject\Uuid;
 use App\Tests\Fixtures\StringHelper;
 
@@ -26,5 +27,10 @@ final class ValueObjectMother
     public static function makePokemonName(?string $value = null): PokemonName
     {
         return new PokemonName($value ?? 'PIKACHU');
+    }
+
+    public static function makePokemonType(?string $value = null): PokemonType
+    {
+        return new PokemonType($value ?? PokemonType::ELECTRIC);
     }
 }
