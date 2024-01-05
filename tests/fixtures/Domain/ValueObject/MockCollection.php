@@ -7,7 +7,9 @@ namespace App\Tests\Fixtures\Domain\ValueObject;
 use App\Domain\ValueObject\AbstractCollection;
 
 /**
- * Mock class used to test AbstractCollection
+ * @template TKey
+ * @template-covariant TValue
+ * @template-extends AbstractCollection<TKey, TValue>
  */
 final class MockCollection extends AbstractCollection
 {
