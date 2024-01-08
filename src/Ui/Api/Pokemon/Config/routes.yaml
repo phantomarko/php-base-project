@@ -1,0 +1,4 @@
+create_specie:
+  path: /pokemon/species
+  controller: App\Ui\Api\Pokemon\Controller\CreateSpecieController
+  methods: POST

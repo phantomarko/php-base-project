@@ -13,8 +13,8 @@ doctrine:
             App:
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/Entity'
-                prefix: 'App\Domain\Entity'
+                dir: '%kernel.project_dir%/src/Infrastructure/Pokemon/Orm/Doctrine/Mapping'
+                prefix: 'App\Domain\Pokemon\Entity'
                 alias: App
 
 when@test:
