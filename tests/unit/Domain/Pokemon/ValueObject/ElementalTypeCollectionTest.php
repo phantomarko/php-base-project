@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Domain\Pokemon\ValueObject;
 
-use App\Domain\Pokemon\Exception\PokemonTypeCollectionHasInvalidItemException;
-use App\Domain\Pokemon\Exception\PokemonTypeIsNotValidException;
-use App\Domain\Pokemon\ValueObject\PokemonType;
-use App\Domain\Pokemon\ValueObject\PokemonTypeCollection;
+use App\Domain\Pokemon\Exception\ElementalTypeCollectionHasInvalidItemException;
+use App\Domain\Pokemon\Exception\ElementalTypeIsNotValidException;
+use App\Domain\Pokemon\ValueObject\ElementalType;
+use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
 use PHPUnit\Framework\TestCase;
 
-class PokemonTypeCollectionTest extends TestCase
+class ElementalTypeCollectionTest extends TestCase
 {
     /**
      * @dataProvider createSuccessfullyProvider
      */
     public function testCreateSuccessfully(?array $array): void
     {
-        $types = PokemonTypeCollection::tryFrom($array);
+        $types = ElementalTypeCollection::tryFrom($array);
 
         $this->assertCount(count($array ?? []), $types ?? []);
     }
@@ -33,13 +33,13 @@ class PokemonTypeCollectionTest extends TestCase
             ],
             'single type' => [
                 [
-                    PokemonType::FIRE,
+                    ElementalType::FIRE,
                 ]
             ],
             'multiple types' => [
                 [
-                    PokemonType::STEEL,
-                    PokemonType::FIGHTING,
+                    ElementalType::STEEL,
+                    ElementalType::FIGHTING,
                 ]
             ],
         ];
@@ -51,21 +51,21 @@ class PokemonTypeCollectionTest extends TestCase
     public function testCreateUnsuccessfully(string $expected_exception, array $array): void
     {
         $this->expectException($expected_exception);
-        PokemonTypeCollection::tryFrom($array);
+        ElementalTypeCollection::tryFrom($array);
     }
 
     public static function createUnsuccessfullyProvider(): array
     {
         return [
             'not string item' => [
-                PokemonTypeCollectionHasInvalidItemException::class,
+                ElementalTypeCollectionHasInvalidItemException::class,
                 [
-                    PokemonType::FIRE,
+                    ElementalType::FIRE,
                     1,
                 ],
             ],
             'invalid string' => [
-                PokemonTypeIsNotValidException::class,
+                ElementalTypeIsNotValidException::class,
                 [
                     'FAIRY'
                 ],

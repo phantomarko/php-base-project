@@ -7,42 +7,42 @@ namespace App\Tests\Fixtures\Domain\Pokemon\Entity;
 use App\Domain\Common\ValueObject\Id;
 use App\Domain\Common\ValueObject\Uuid;
 use App\Domain\Pokemon\Entity\Pokemon;
-use App\Domain\Pokemon\Entity\PokemonSpecie;
-use App\Domain\Pokemon\ValueObject\PokemonName;
+use App\Domain\Pokemon\Entity\Specie;
+use App\Domain\Pokemon\ValueObject\SpecieName;
 use App\Domain\Pokemon\ValueObject\PokemonNickname;
-use App\Domain\Pokemon\ValueObject\PokemonTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
 use App\Tests\Fixtures\Domain\Common\ValueObject\ValueObjectMother as CommonValueObjectMother;
 use App\Tests\Fixtures\Domain\Pokemon\ValueObject\ValueObjectMother as PokemonValueObjectMother;
 
 final class EntityMother
 {
-    public static function makePokemonSpecie(
+    public static function makeSpecie(
         ?Id $id = null,
-        ?PokemonName $name = null,
-        ?PokemonTypeCollection $types = null
-    ): PokemonSpecie {
-        return new PokemonSpecie(
+        ?SpecieName $name = null,
+        ?ElementalTypeCollection $types = null
+    ): Specie {
+        return new Specie(
             id: $id,
             name: $name,
             types: $types
         );
     }
 
-    public static function makeDefaultPokemonSpecie(
+    public static function makeDefaultSpecie(
         ?Id $id = null,
-        ?PokemonName $name = null,
-        ?PokemonTypeCollection $types = null
-    ): PokemonSpecie {
-        return new PokemonSpecie(
+        ?SpecieName $name = null,
+        ?ElementalTypeCollection $types = null
+    ): Specie {
+        return new Specie(
             id: $id ?? CommonValueObjectMother::makeId(),
-            name: $name ?? PokemonValueObjectMother::makePokemonName(),
-            types: $types ?? PokemonValueObjectMother::makePokemonTypeCollection()
+            name: $name ?? PokemonValueObjectMother::makeSpecieName(),
+            types: $types ?? PokemonValueObjectMother::makeElementalTypeCollection()
         );
     }
 
     public static function makePokemon(
         ?Uuid $uuid = null,
-        ?PokemonSpecie $specie = null,
+        ?Specie $specie = null,
         ?PokemonNickname $nickname = null
     ): Pokemon {
         return new Pokemon(

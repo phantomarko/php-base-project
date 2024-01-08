@@ -50,4 +50,13 @@ class PokemonNicknameTest extends TestCase
             'larger than max length' => [str_repeat('s', PokemonNickname::MAX_LENGTH + 1)],
         ];
     }
+
+    public function testCreateFromNickname(): void
+    {
+        $value = 'CHARMANDER';
+        $name = ValueObjectMother::makeSpecieName($value);
+        $nickname = PokemonNickname::fromSpecieName($name);
+
+        $this->assertEquals($value, $nickname->getValue());
+    }
 }

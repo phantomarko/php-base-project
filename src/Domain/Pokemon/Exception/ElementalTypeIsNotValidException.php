@@ -6,9 +6,9 @@ namespace App\Domain\Pokemon\Exception;
 
 use App\Domain\Common\Exception\DomainException;
 
-final class PokemonNameIsNotValidException extends DomainException
+final class ElementalTypeIsNotValidException extends DomainException
 {
-    private const MESSAGE = 'the Pokemon name is not valid';
+    private const MESSAGE = 'elemental type is not valid';
 
     public static function make(): self
     {

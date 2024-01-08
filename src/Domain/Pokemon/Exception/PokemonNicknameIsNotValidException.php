@@ -8,7 +8,7 @@ use App\Domain\Common\Exception\DomainException;
 
 final class PokemonNicknameIsNotValidException extends DomainException
 {
-    private const MESSAGE = 'the Pokemon nickname is not valid';
+    private const MESSAGE = 'pokemon nickname is not valid';
 
     public static function make(): self
     {

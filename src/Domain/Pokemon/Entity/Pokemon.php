@@ -6,7 +6,7 @@ namespace App\Domain\Pokemon\Entity;
 
 use App\Domain\Common\Exception\RequiredFieldIsMissingException;
 use App\Domain\Common\ValueObject\Uuid;
-use App\Domain\Pokemon\ValueObject\PokemonName;
+use App\Domain\Pokemon\ValueObject\SpecieName;
 use App\Domain\Pokemon\ValueObject\PokemonNickname;
 
 class Pokemon
@@ -16,12 +16,12 @@ class Pokemon
     public const NICKNAME = 'nickname';
 
     private Uuid $uuid;
-    private PokemonSpecie $specie;
+    private Specie $specie;
     private PokemonNickname $nickname;
 
     public function __construct(
         ?Uuid $uuid = null,
-        ?PokemonSpecie $specie = null,
+        ?Specie $specie = null,
         ?PokemonNickname $nickname = null
     ) {
         $this->setUuid($uuid);
@@ -42,17 +42,17 @@ class Pokemon
         $this->uuid = $uuid;
     }
 
-    public function getSpecie(): PokemonSpecie
+    public function getSpecie(): Specie
     {
         return $this->specie;
     }
 
-    private function getSpecieName(): PokemonName
+    private function getSpecieName(): SpecieName
     {
         return $this->getSpecie()->getName();
     }
 
-    private function setSpecie(?PokemonSpecie $specie): void
+    private function setSpecie(?Specie $specie): void
     {
         if (is_null($specie)) {
             throw RequiredFieldIsMissingException::makeByFieldName(self::SPECIE);
@@ -68,7 +68,7 @@ class Pokemon
     private function setNickname(?PokemonNickname $nickname): void
     {
         if (is_null($nickname)) {
-            $nickname = $this->getSpecieName()->toNickname();
+            $nickname = PokemonNickname::fromSpecieName($this->getSpecieName());
         }
         $this->nickname = $nickname;
     }

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures\Domain\Pokemon\ValueObject;
 
-use App\Domain\Pokemon\ValueObject\PokemonName;
+use App\Domain\Pokemon\ValueObject\SpecieName;
 use App\Domain\Pokemon\ValueObject\PokemonNickname;
-use App\Domain\Pokemon\ValueObject\PokemonType;
-use App\Domain\Pokemon\ValueObject\PokemonTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalType;
+use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
 
 final class ValueObjectMother
 {
-    public static function makePokemonName(?string $value = null): PokemonName
+    public static function makeSpecieName(?string $value = null): SpecieName
     {
-        return new PokemonName($value ?? 'PIKACHU');
+        return new SpecieName($value ?? 'PIKACHU');
     }
 
     public static function makePokemonNickname(?string $value = null): PokemonNickname
@@ -21,13 +21,13 @@ final class ValueObjectMother
         return new PokemonNickname($value ?? 'SPARKY');
     }
 
-    public static function makePokemonType(?string $value = null): PokemonType
+    public static function makeElementalType(?string $value = null): ElementalType
     {
-        return new PokemonType($value ?? PokemonType::ELECTRIC);
+        return new ElementalType($value ?? ElementalType::ELECTRIC);
     }
 
-    public static function makePokemonTypeCollection(?array $array = null): PokemonTypeCollection
+    public static function makeElementalTypeCollection(?array $array = null): ElementalTypeCollection
     {
-        return new PokemonTypeCollection($array ?? [self::makePokemonType()]);
+        return new ElementalTypeCollection($array ?? [self::makeElementalType()]);
     }
 }

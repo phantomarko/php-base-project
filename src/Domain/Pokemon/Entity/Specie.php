@@ -6,23 +6,23 @@ namespace App\Domain\Pokemon\Entity;
 
 use App\Domain\Common\Exception\RequiredFieldIsMissingException;
 use App\Domain\Common\ValueObject\Id;
-use App\Domain\Pokemon\ValueObject\PokemonName;
-use App\Domain\Pokemon\ValueObject\PokemonTypeCollection;
+use App\Domain\Pokemon\ValueObject\SpecieName;
+use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
 
-class PokemonSpecie
+class Specie
 {
     public const ID = 'id';
     public const NAME = 'name';
     public const TYPES = 'types';
 
     private Id $id;
-    private PokemonName $name;
-    private PokemonTypeCollection $types;
+    private SpecieName $name;
+    private ElementalTypeCollection $types;
 
     public function __construct(
         ?Id $id = null,
-        ?PokemonName $name = null,
-        ?PokemonTypeCollection $types = null
+        ?SpecieName $name = null,
+        ?ElementalTypeCollection $types = null
     ) {
         $this->setId($id);
         $this->setName($name);
@@ -42,12 +42,12 @@ class PokemonSpecie
         $this->id = $id;
     }
 
-    public function getName(): PokemonName
+    public function getName(): SpecieName
     {
         return $this->name;
     }
 
-    private function setName(?PokemonName $name): void
+    private function setName(?SpecieName $name): void
     {
         if (is_null($name)) {
             throw RequiredFieldIsMissingException::makeByFieldName(self::NAME);
@@ -55,12 +55,12 @@ class PokemonSpecie
         $this->name = $name;
     }
 
-    public function getTypes(): PokemonTypeCollection
+    public function getTypes(): ElementalTypeCollection
     {
         return $this->types;
     }
 
-    private function setTypes(?PokemonTypeCollection $types): void
+    private function setTypes(?ElementalTypeCollection $types): void
     {
         if (is_null($types)) {
             throw RequiredFieldIsMissingException::makeByFieldName(self::TYPES);

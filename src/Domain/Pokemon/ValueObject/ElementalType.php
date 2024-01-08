@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Domain\Pokemon\ValueObject;
 
 use App\Domain\Common\ValueObject\AbstractStringValueObject;
-use App\Domain\Pokemon\Exception\PokemonTypeIsNotValidException;
+use App\Domain\Pokemon\Exception\ElementalTypeIsNotValidException;
 
-final class PokemonType extends AbstractStringValueObject
+final class ElementalType extends AbstractStringValueObject
 {
     public const NORMAL = 'NORMAL';
     public const FIRE = 'FIRE';
@@ -49,7 +49,7 @@ final class PokemonType extends AbstractStringValueObject
     protected function validate(string $value): void
     {
         if (!in_array($value, self::CASES)) {
-            throw PokemonTypeIsNotValidException::make();
+            throw ElementalTypeIsNotValidException::make();
         }
     }
 }

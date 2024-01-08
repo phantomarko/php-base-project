@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Domain\Pokemon\ValueObject;
 
-use App\Domain\Pokemon\Exception\PokemonTypeIsNotValidException;
-use App\Domain\Pokemon\ValueObject\PokemonType;
+use App\Domain\Pokemon\Exception\ElementalTypeIsNotValidException;
+use App\Domain\Pokemon\ValueObject\ElementalType;
 use App\Tests\Fixtures\Domain\Pokemon\ValueObject\ValueObjectMother;
 use App\Tests\Unit\TestCase;
 
-class PokemonTypeTest extends TestCase
+class ElementalTypeTest extends TestCase
 {
     /**
      * @dataProvider createSuccessfullyProvider
      */
     public function testCreateSuccessfully(string $value): void
     {
-        $type = ValueObjectMother::makePokemonType($value);
+        $type = ValueObjectMother::makeElementalType($value);
 
         $this->assertEquals($value, $type->getValue());
     }
 
     public static function createSuccessfullyProvider(): array
     {
-        return array_map(fn(string $case): array => [$case], PokemonType::CASES);
+        return array_map(fn(string $case): array => [$case], ElementalType::CASES);
     }
 
     /**
@@ -31,8 +31,8 @@ class PokemonTypeTest extends TestCase
      */
     public function testCreateUnsuccessfully(string $value): void
     {
-        $this->expectException(PokemonTypeIsNotValidException::class);
-        ValueObjectMother::makePokemonType($value);
+        $this->expectException(ElementalTypeIsNotValidException::class);
+        ValueObjectMother::makeElementalType($value);
     }
 
     public static function createUnsuccessfullyProvider(): array

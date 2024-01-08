@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Domain\Pokemon\Entity;
 use App\Domain\Common\Exception\RequiredFieldIsMissingException;
 use App\Domain\Common\ValueObject\Uuid;
 use App\Domain\Pokemon\Entity\Pokemon;
-use App\Domain\Pokemon\Entity\PokemonSpecie;
+use App\Domain\Pokemon\Entity\Specie;
 use App\Domain\Pokemon\ValueObject\PokemonNickname;
 use App\Tests\Fixtures\Domain\Common\ValueObject\ValueObjectMother as CommonValueObjectMother;
 use App\Tests\Fixtures\Domain\Pokemon\Entity\EntityMother;
@@ -21,7 +21,7 @@ class PokemonTest extends TestCase
      */
     public function testCreateSuccessfully(
         Uuid $uuid,
-        PokemonSpecie $specie,
+        Specie $specie,
         ?PokemonNickname $nickname
     ): void {
         $pokemon = EntityMother::makePokemon(
@@ -32,7 +32,10 @@ class PokemonTest extends TestCase
 
         $this->assertEquals($uuid, $pokemon->getUuid());
         $this->assertEquals($specie, $pokemon->getSpecie());
-        $this->assertEquals($nickname ?? $specie->getName()->toNickname(), $pokemon->getNickname());
+        $this->assertEquals(
+            $nickname ?? PokemonNickname::fromSpecieName($specie->getName()),
+            $pokemon->getNickname()
+        );
     }
 
     public static function createSuccessfullyProvider(): array
@@ -40,12 +43,12 @@ class PokemonTest extends TestCase
         return [
             [
                 CommonValueObjectMother::makeUuid(),
-                EntityMother::makeDefaultPokemonSpecie(),
+                EntityMother::makeDefaultSpecie(),
                 null
             ],
             [
                 CommonValueObjectMother::makeUuid(),
-                EntityMother::makeDefaultPokemonSpecie(),
+                EntityMother::makeDefaultSpecie(),
                 PokemonValueObjectMother::makePokemonNickname()
             ],
         ];
@@ -58,7 +61,7 @@ class PokemonTest extends TestCase
         string $expected_exception,
         string $expected_message,
         ?Uuid $uuid,
-        ?PokemonSpecie $specie,
+        ?Specie $specie,
         ?PokemonNickname $nickname
     ): void {
         $this->expectException($expected_exception);
@@ -77,7 +80,7 @@ class PokemonTest extends TestCase
                 RequiredFieldIsMissingException::class,
                 RequiredFieldIsMissingException::makeByFieldName(Pokemon::UUID)->getMessage(),
                 null,
-                EntityMother::makeDefaultPokemonSpecie(),
+                EntityMother::makeDefaultSpecie(),
                 null,
             ],
             'specie as null' => [

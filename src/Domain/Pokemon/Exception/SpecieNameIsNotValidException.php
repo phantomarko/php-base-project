@@ -6,9 +6,9 @@ namespace App\Domain\Pokemon\Exception;
 
 use App\Domain\Common\Exception\DomainException;
 
-final class PokemonTypeCollectionHasInvalidItemException extends DomainException
+final class SpecieNameIsNotValidException extends DomainException
 {
-    private const MESSAGE = 'the Pokemon types have an invalid item';
+    private const MESSAGE = 'specie name is not valid';
 
     public static function make(): self
     {
