@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Domain\Common\ValueObject;
 
-use App\Tests\Fixtures\Domain\Common\ValueObject\ValueObjectMother;
+use App\Tests\Fixtures\Domain\Common\ValueObject\MockCollection;
 use PHPUnit\Framework\TestCase;
 
 class AbstractCollectionTest extends TestCase
@@ -12,16 +12,17 @@ class AbstractCollectionTest extends TestCase
     /**
      * @dataProvider createProvider
      */
-    public function testCreate(array $array): void
+    public function testCreate(?array $array): void
     {
-        $collection = ValueObjectMother::makeCollection($array);
+        $collection = MockCollection::tryFrom($array);
 
-        $this->assertEquals($array, $collection->toArray());
+        $this->assertEquals($array, $collection?->toArray());
     }
 
     public static function createProvider(): array
     {
         return [
+            'null' => [null],
             'empty array' => [[]],
             'strings' => [['one', 'two', 'three']],
         ];
@@ -32,7 +33,8 @@ class AbstractCollectionTest extends TestCase
         $array = ['a', 'b', 'c'];
         $array_count = count($array);
 
-        $letters = ValueObjectMother::makeCollection($array);
+        /** @var MockCollection $letters */
+        $letters = MockCollection::tryFrom($array);
 
         $iterations = 0;
         foreach ($letters as $key => $letter) {

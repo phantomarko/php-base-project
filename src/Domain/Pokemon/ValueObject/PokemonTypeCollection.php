@@ -23,4 +23,16 @@ final class PokemonTypeCollection extends AbstractCollection
             }
         }
     }
+
+    protected static function fromArrayOfPrimitives(array $array): static
+    {
+        $items = array_map(function (mixed $element): PokemonType {
+            if (!is_string($element)) {
+                throw PokemonTypeCollectionHasInvalidItemException::make();
+            }
+
+            return new PokemonType($element);
+        }, $array);
+        return new self($items);
+    }
 }

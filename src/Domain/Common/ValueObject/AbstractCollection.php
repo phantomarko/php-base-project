@@ -60,4 +60,15 @@ abstract class AbstractCollection implements Iterator, Countable
     {
         return $this->items;
     }
+
+    public static function tryFrom(?array $array): ?static
+    {
+        if (is_null($array)) {
+            return null;
+        }
+
+        return static::fromArrayOfPrimitives($array);
+    }
+
+    abstract protected static function fromArrayOfPrimitives(array $array): static;
 }

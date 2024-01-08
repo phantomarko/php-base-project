@@ -16,4 +16,9 @@ final class MockCollection extends AbstractCollection
     protected function validateItems(array $items): void
     {
     }
+
+    protected static function fromArrayOfPrimitives(array $array): static
+    {
+        return new self($array);
+    }
 }
