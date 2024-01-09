@@ -4,10 +4,9 @@ namespace App\Ui\Api\Pokemon\Controller;
 
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieCommand;
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use App\Ui\Api\Common\Controller\AbstractController;
 
-final class CreateSpecieController
+final class CreateSpecieController extends AbstractController
 {
     public function __construct(private readonly CreateSpecieHandler $handler)
     {
@@ -20,6 +19,7 @@ final class CreateSpecieController
             'BULBASAUR',
             ['GRASS', 'POISON']
         ));
-        return new JsonResponse(data: 'create specie', status: Response::HTTP_CREATED);
+
+        return $this->makeResourceCreatedResponse();
     }
 }

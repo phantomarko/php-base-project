@@ -1,0 +1,11 @@
+services:
+  App\Ui\Api\Pokemon\Controller\CreateSpecieController:
+    tags: [ 'controller.service_arguments' ]
+    arguments:
+      - '@App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler'
+
+  App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler:
+    arguments:
+      - '@App\Infrastructure\Pokemon\Repository\TmpSpecieRepository'
+
+  App\Infrastructure\Pokemon\Repository\TmpSpecieRepository:
