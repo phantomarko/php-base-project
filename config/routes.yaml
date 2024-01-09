@@ -1,3 +1,0 @@
-api:
-  prefix: /api
-  resource: '../src/Ui/Api/Pokemon/Resources/routes.yaml'

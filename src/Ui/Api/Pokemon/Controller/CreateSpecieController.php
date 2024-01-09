@@ -5,6 +5,8 @@ namespace App\Ui\Api\Pokemon\Controller;
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieCommand;
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler;
 use App\Ui\Api\Common\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class CreateSpecieController extends AbstractController
 {
@@ -12,7 +14,8 @@ final class CreateSpecieController extends AbstractController
     {
     }
 
-    public function __invoke()
+    #[Route('/api/pokemon/species', name: 'create pokemon specie', methods: ['POST'])]
+    public function __invoke(): Response
     {
         $this->handler->handle(new CreateSpecieCommand(
             1,

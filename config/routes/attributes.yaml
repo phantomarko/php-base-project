@@ -1,0 +1,2 @@
+pokemon:
+  resource: ../../src/Ui/Api/Pokemon/Resources/routes.yaml

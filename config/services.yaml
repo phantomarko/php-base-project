@@ -1,5 +1,5 @@
 imports:
-  - { resource: '../src/Ui/Api/Pokemon/Resources/services.yaml' }
+  - { resource: ../src/Ui/Api/Pokemon/Resources/services.yaml }
 
 parameters:
 
