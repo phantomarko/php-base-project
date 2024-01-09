@@ -63,7 +63,7 @@ PHP Base Project
     ```
    
 5. Access the web server or the containers using 127.0.0.1 or the machine IP as host
-    - Web. http://172.18.91.172:8000
+    - API. http://172.18.91.172:8000/api/doc
     - Adminer. http://172.18.91.172:8080/?server=db&username=Us3r&db=storage
 
 ## Environment Handbook
