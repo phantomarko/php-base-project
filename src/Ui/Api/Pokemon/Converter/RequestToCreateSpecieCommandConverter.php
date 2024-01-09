@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Ui\Api\Pokemon\Converter;
 
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieCommand;
+use App\Domain\Pokemon\Entity\Specie;
 use Symfony\Component\HttpFoundation\Request;
 
 final class RequestToCreateSpecieCommandConverter
@@ -13,9 +14,9 @@ final class RequestToCreateSpecieCommandConverter
     {
         $array = $request->toArray();
         return new CreateSpecieCommand(
-            $array['id'] ?? null,
-            $array['name'] ?? null,
-            $array['types'] ?? null
+            $array[Specie::ID] ?? null,
+            $array[Specie::NAME] ?? null,
+            $array[Specie::TYPES] ?? null
         );
     }
 }
