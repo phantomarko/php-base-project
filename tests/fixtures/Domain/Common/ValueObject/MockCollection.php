@@ -17,7 +17,12 @@ final class MockCollection extends AbstractCollection
     {
     }
 
-    protected static function fromArrayOfPrimitives(array $array): static
+    public function toArray(): array
+    {
+        return $this->items;
+    }
+
+    public static function fromArray(array $array): static
     {
         return new self($array);
     }

@@ -20,6 +20,7 @@ class ElementalTypeCollectionTest extends TestCase
         $types = ElementalTypeCollection::tryFrom($array);
 
         $this->assertCount(count($array ?? []), $types ?? []);
+        $this->assertEquals($array ?? [], $types?->toArray() ?? []);
     }
 
     public static function createSuccessfullyProvider(): array

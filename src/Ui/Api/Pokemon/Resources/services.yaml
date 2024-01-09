@@ -9,6 +9,10 @@ services:
 
   App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler:
     arguments:
-      - '@App\Infrastructure\Pokemon\Repository\TmpSpecieRepository'
+      - '@App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository'
 
   App\Infrastructure\Pokemon\Repository\TmpSpecieRepository:
+
+  App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository:
+    arguments:
+      - '@doctrine'

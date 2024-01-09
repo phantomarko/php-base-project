@@ -24,7 +24,12 @@ final class ElementalTypeCollection extends AbstractCollection
         }
     }
 
-    protected static function fromArrayOfPrimitives(array $array): static
+    public function toArray(): array
+    {
+        return array_map(fn(ElementalType $type): string => $type->getValue(), $this->items);
+    }
+
+    public static function fromArray(array $array): static
     {
         $items = array_map(function (mixed $value): ElementalType {
             if (!is_string($value)) {

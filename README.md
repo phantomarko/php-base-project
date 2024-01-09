@@ -56,13 +56,18 @@ PHP Base Project
     ```shell
     docker compose build --no-cache --pull && docker compose up -d
     ```
+   
+4. Execute all DB migrations.
+    ```shell
+    php bin/console doctrine:migrations:migrate
+    ```
 
-4. Start web server
+5. Start web server
     ```shell
     symfony server:start
     ```
    
-5. Access the web server or the containers using 127.0.0.1 or the machine IP as host
+6. Access the web server or the containers using 127.0.0.1 or the machine IP as host
     - API. http://172.18.91.172:8000/api/doc
     - Adminer. http://172.18.91.172:8080/?server=db&username=Us3r&db=storage
 
@@ -90,6 +95,26 @@ Prune
 docker system prune -a --volumes
 ```
 
+### Migrations
+
+Execute all
+```shell
+php bin/console doctrine:migrations:migrate
+```
+
+Generate
+```shell
+php bin/console doctrine:migrations:generate
+```
+
+Execute one or more
+```shell
+php bin/console doctrine:migrations:execute --up 'DoctrineMigrations\{MIGRATION_CLASS}'
+```
+```shell
+php bin/console doctrine:migrations:execute --down 'DoctrineMigrations\{MIGRATION_CLASS}'
+```
+
 ### Symfony CLI
 
 Start server
@@ -105,12 +130,7 @@ symfony server:ca:install
 symfony server:ca:uninstall
 ```
 
-### Tools
-
-Show routes
-```shell
-php bin/console debug:router
-```
+### Code quality
 
 Analyze and test project (psalm, phpcs and phpunit)
 ```shell

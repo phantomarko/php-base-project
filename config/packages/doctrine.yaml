@@ -2,20 +2,21 @@ doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
+        types:
+            custom_id: App\Infrastructure\Common\Orm\CustomType\IdCustomType
+            specie_name: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\SpecieNameCustomType
+            elemental_types: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\ElementalTypeCollectionCustomType
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
         report_fields_where_declared: true
-        validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: false
+        auto_mapping: true
         mappings:
-            App:
-                type: attribute
-                is_bundle: false
+            Pokemon:
+                type: xml
                 dir: '%kernel.project_dir%/src/Infrastructure/Pokemon/Orm/Doctrine/Mapping'
                 prefix: 'App\Domain\Pokemon\Entity'
-                alias: App
 
 when@test:
     doctrine:

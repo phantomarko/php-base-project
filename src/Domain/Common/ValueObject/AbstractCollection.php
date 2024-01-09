@@ -14,8 +14,8 @@ use Iterator;
  */
 abstract class AbstractCollection implements Iterator, Countable
 {
-    private array $items;
-    private int $pointer;
+    protected array $items;
+    protected int $pointer;
 
     final public function __construct(array $items)
     {
@@ -56,19 +56,16 @@ abstract class AbstractCollection implements Iterator, Countable
         return count($this->items);
     }
 
-    final public function toArray(): array
-    {
-        return $this->items;
-    }
-
     public static function tryFrom(?array $array): ?static
     {
         if (is_null($array)) {
             return null;
         }
 
-        return static::fromArrayOfPrimitives($array);
+        return static::fromArray($array);
     }
 
-    abstract protected static function fromArrayOfPrimitives(array $array): static;
+    abstract public function toArray(): array;
+
+    abstract public static function fromArray(array $array): static;
 }
