@@ -14,7 +14,7 @@ final class CreateSpecieController extends AbstractController
     {
     }
 
-    #[Route('/api/pokemon/species', name: 'create pokemon specie', methods: ['POST'])]
+    #[Route('/species', name: 'specie.create', methods: ['POST'])]
     public function __invoke(): Response
     {
         $this->handler->handle(new CreateSpecieCommand(

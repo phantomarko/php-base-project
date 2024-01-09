@@ -1,2 +1,4 @@
-pokemon:
+api.pokemon:
   resource: ../../src/Ui/Api/Pokemon/Resources/routes.yaml
+  prefix: '/api'
+  name_prefix: 'api.'
