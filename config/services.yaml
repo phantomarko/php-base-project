@@ -1,9 +1,24 @@
-imports:
-  - { resource: ../src/Ui/Api/Pokemon/Resources/services.yaml }
-
 parameters:
 
 services:
   _defaults:
     autowire: false
     autoconfigure: false
+
+  App\Ui\Api\Pokemon\Controller\CreateSpecieController:
+    tags: [ 'controller.service_arguments' ]
+    arguments:
+      - '@App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter'
+      - '@App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler'
+
+  App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter:
+
+  App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler:
+    arguments:
+      - '@App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository'
+
+  App\Infrastructure\Pokemon\Repository\TmpSpecieRepository:
+
+  App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository:
+    arguments:
+      - '@doctrine'

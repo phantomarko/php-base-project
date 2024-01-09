@@ -21,7 +21,7 @@ final class CreateSpecieController extends AbstractController
     ) {
     }
 
-    #[Route('/species', name: 'specie.create', methods: ['POST'])]
+    #[Route('/api/species', name: 'api.specie.create', methods: ['POST'])]
     #[OA\Tag(name: 'species')]
     #[OA\RequestBody(
         content: new OA\JsonContent(ref: new Model(type: CreateSpecieCommand::class))

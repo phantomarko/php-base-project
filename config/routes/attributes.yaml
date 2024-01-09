@@ -1,4 +1,5 @@
 api.pokemon:
-  resource: ../../src/Ui/Api/Pokemon/Resources/routes.yaml
-  prefix: '/api'
-  name_prefix: 'api.'
+  resource:
+    path: ../../src/Ui/Api/Pokemon/Controller/
+    namespace: App\Ui\Api\Pokemon\Controller\
+  type: attribute

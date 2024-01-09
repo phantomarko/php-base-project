@@ -1,3 +1,0 @@
-create_specie:
-  resource: App\Ui\Api\Pokemon\Controller\CreateSpecieController
-  type: attribute
