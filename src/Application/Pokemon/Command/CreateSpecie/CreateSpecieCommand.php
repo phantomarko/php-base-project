@@ -6,6 +6,9 @@ namespace App\Application\Pokemon\Command\CreateSpecie;
 
 final class CreateSpecieCommand
 {
+    /**
+     * @param string[]|null $types
+     */
     public function __construct(
         private readonly ?int $id = null,
         private readonly ?string $name = null,

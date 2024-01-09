@@ -2,7 +2,10 @@ services:
   App\Ui\Api\Pokemon\Controller\CreateSpecieController:
     tags: [ 'controller.service_arguments' ]
     arguments:
+      - '@App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter'
       - '@App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler'
+
+  App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter:
 
   App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler:
     arguments:
