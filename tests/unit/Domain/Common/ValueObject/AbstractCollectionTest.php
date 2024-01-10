@@ -16,7 +16,7 @@ class AbstractCollectionTest extends TestCase
     {
         $collection = MockCollection::tryFrom($array);
 
-        $this->assertEquals($array, $collection?->toArray());
+        $this->assertEquals($array, $collection?->getItems());
     }
 
     public static function createProvider(): array

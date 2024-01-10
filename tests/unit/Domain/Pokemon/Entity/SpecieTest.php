@@ -8,7 +8,7 @@ use App\Domain\Common\Exception\RequiredFieldIsMissingException;
 use App\Domain\Common\ValueObject\Id;
 use App\Domain\Pokemon\Entity\Specie;
 use App\Domain\Pokemon\ValueObject\SpecieName;
-use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypes;
 use App\Tests\Fixtures\Domain\Common\ValueObject\ValueObjectMother as CommonValueObjectMother;
 use App\Tests\Fixtures\Domain\Pokemon\Entity\EntityMother;
 use App\Tests\Fixtures\Domain\Pokemon\ValueObject\ValueObjectMother as PokemonValueObjectMother;
@@ -22,7 +22,7 @@ class SpecieTest extends TestCase
     public function testCreateSuccessfully(
         Id $id,
         SpecieName $name,
-        ElementalTypeCollection $types
+        ElementalTypes $types
     ): void {
         $pokemon_specie = EntityMother::makeSpecie(
             id: $id,
@@ -40,7 +40,7 @@ class SpecieTest extends TestCase
             [
                 CommonValueObjectMother::makeId(),
                 PokemonValueObjectMother::makeSpecieName(),
-                PokemonValueObjectMother::makeElementalTypeCollection(),
+                PokemonValueObjectMother::makeElementalTypes(),
             ],
         ];
     }
@@ -53,7 +53,7 @@ class SpecieTest extends TestCase
         string $expected_message,
         ?Id $id,
         ?SpecieName $name,
-        ?ElementalTypeCollection $types
+        ?ElementalTypes $types
     ): void {
         $this->expectException($expected_exception);
         $this->expectExceptionMessage($expected_message);
@@ -72,14 +72,14 @@ class SpecieTest extends TestCase
                 RequiredFieldIsMissingException::makeByFieldName(Specie::ID)->getMessage(),
                 null,
                 PokemonValueObjectMother::makeSpecieName(),
-                PokemonValueObjectMother::makeElementalTypeCollection(),
+                PokemonValueObjectMother::makeElementalTypes(),
             ],
             'name as null' => [
                 RequiredFieldIsMissingException::class,
                 RequiredFieldIsMissingException::makeByFieldName(Specie::NAME)->getMessage(),
                 CommonValueObjectMother::makeId(),
                 null,
-                PokemonValueObjectMother::makeElementalTypeCollection(),
+                PokemonValueObjectMother::makeElementalTypes(),
             ],
             'types as null' => [
                 RequiredFieldIsMissingException::class,

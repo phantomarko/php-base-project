@@ -7,7 +7,7 @@ namespace App\Domain\Pokemon\Entity;
 use App\Domain\Common\Exception\RequiredFieldIsMissingException;
 use App\Domain\Common\ValueObject\Id;
 use App\Domain\Pokemon\ValueObject\SpecieName;
-use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypes;
 
 class Specie
 {
@@ -17,12 +17,12 @@ class Specie
 
     private Id $id;
     private SpecieName $name;
-    private ElementalTypeCollection $types;
+    private ElementalTypes $types;
 
     public function __construct(
         ?Id $id = null,
         ?SpecieName $name = null,
-        ?ElementalTypeCollection $types = null
+        ?ElementalTypes $types = null
     ) {
         $this->setId($id);
         $this->setName($name);
@@ -55,12 +55,12 @@ class Specie
         $this->name = $name;
     }
 
-    public function getTypes(): ElementalTypeCollection
+    public function getTypes(): ElementalTypes
     {
         return $this->types;
     }
 
-    private function setTypes(?ElementalTypeCollection $types): void
+    private function setTypes(?ElementalTypes $types): void
     {
         if (is_null($types)) {
             throw RequiredFieldIsMissingException::makeByFieldName(self::TYPES);

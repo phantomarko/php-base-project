@@ -26,6 +26,11 @@ abstract class AbstractCollection implements Iterator, Countable
 
     abstract protected function validateItems(array $items): void;
 
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
     final public function current(): mixed
     {
         return $this->items[$this->pointer];

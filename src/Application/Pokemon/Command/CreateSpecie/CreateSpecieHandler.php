@@ -8,7 +8,7 @@ use App\Domain\Common\ValueObject\Id;
 use App\Domain\Pokemon\Entity\Specie;
 use App\Domain\Pokemon\Repository\SpecieRepositoryInterface;
 use App\Domain\Pokemon\ValueObject\SpecieName;
-use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypes;
 
 final class CreateSpecieHandler
 {
@@ -21,7 +21,7 @@ final class CreateSpecieHandler
         $specie = new Specie(
             Id::tryFrom($command->getId()),
             SpecieName::tryFrom($command->getName()),
-            ElementalTypeCollection::tryFrom($command->getTypes())
+            ElementalTypes::tryFrom($command->getTypes())
         );
 
         $this->repository->save($specie);

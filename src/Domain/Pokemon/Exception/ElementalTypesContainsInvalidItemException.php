@@ -6,9 +6,9 @@ namespace App\Domain\Pokemon\Exception;
 
 use App\Domain\Common\Exception\DomainException;
 
-final class ElementalTypeCollectionHasInvalidItemException extends DomainException
+final class ElementalTypesContainsInvalidItemException extends DomainException
 {
-    private const MESSAGE = 'elemental types have an invalid item';
+    private const MESSAGE = 'elemental types contains an invalid item';
 
     public static function make(): self
     {

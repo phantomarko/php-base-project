@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Domain\Pokemon\ValueObject;
 
-use App\Domain\Pokemon\Exception\ElementalTypeCollectionHasInvalidItemException;
+use App\Domain\Pokemon\Exception\ElementalTypesContainsInvalidItemException;
 use App\Domain\Pokemon\Exception\ElementalTypeIsNotValidException;
+use App\Domain\Pokemon\Exception\NumberOfElementalTypesIsGreaterThanExpectedException;
 use App\Domain\Pokemon\ValueObject\ElementalType;
-use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypes;
 use PHPUnit\Framework\TestCase;
 
-class ElementalTypeCollectionTest extends TestCase
+class ElementalTypesTest extends TestCase
 {
     /**
      * @dataProvider createSuccessfullyProvider
      */
     public function testCreateSuccessfully(?array $array): void
     {
-        $types = ElementalTypeCollection::tryFrom($array);
+        $types = ElementalTypes::tryFrom($array);
 
         $this->assertCount(count($array ?? []), $types ?? []);
         $this->assertEquals($array ?? [], $types?->toArray() ?? []);
@@ -32,12 +33,12 @@ class ElementalTypeCollectionTest extends TestCase
             'empty' => [
                 []
             ],
-            'single type' => [
+            'one type' => [
                 [
                     ElementalType::FIRE,
                 ]
             ],
-            'multiple types' => [
+            'two types' => [
                 [
                     ElementalType::STEEL,
                     ElementalType::FIGHTING,
@@ -52,14 +53,14 @@ class ElementalTypeCollectionTest extends TestCase
     public function testCreateUnsuccessfully(string $expected_exception, array $array): void
     {
         $this->expectException($expected_exception);
-        ElementalTypeCollection::tryFrom($array);
+        ElementalTypes::tryFrom($array);
     }
 
     public static function createUnsuccessfullyProvider(): array
     {
         return [
             'not string item' => [
-                ElementalTypeCollectionHasInvalidItemException::class,
+                ElementalTypesContainsInvalidItemException::class,
                 [
                     ElementalType::FIRE,
                     1,
@@ -70,6 +71,14 @@ class ElementalTypeCollectionTest extends TestCase
                 [
                     'FAIRY'
                 ],
+            ],
+            'more types than limit' => [
+                NumberOfElementalTypesIsGreaterThanExpectedException::class,
+                [
+                    ElementalType::STEEL,
+                    ElementalType::FIGHTING,
+                    ElementalType::FIRE,
+                ]
             ],
         ];
     }

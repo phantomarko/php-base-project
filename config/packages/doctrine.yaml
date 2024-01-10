@@ -5,7 +5,7 @@ doctrine:
         types:
             custom_id: App\Infrastructure\Common\Orm\CustomType\IdCustomType
             specie_name: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\SpecieNameCustomType
-            elemental_types: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\ElementalTypeCollectionCustomType
+            elemental_types: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\ElementalTypesCustomType
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true

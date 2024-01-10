@@ -5,21 +5,28 @@ declare(strict_types=1);
 namespace App\Domain\Pokemon\ValueObject;
 
 use App\Domain\Common\ValueObject\AbstractCollection;
-use App\Domain\Pokemon\Exception\ElementalTypeCollectionHasInvalidItemException;
+use App\Domain\Pokemon\Exception\ElementalTypesContainsInvalidItemException;
+use App\Domain\Pokemon\Exception\NumberOfElementalTypesIsGreaterThanExpectedException;
 
 /**
  * @template TKey
  * @template-covariant TValue
  * @template-extends AbstractCollection<TKey, TValue>
  */
-final class ElementalTypeCollection extends AbstractCollection
+final class ElementalTypes extends AbstractCollection
 {
+    public const ITEMS_LIMIT = 2;
+
     protected function validateItems(array $items): void
     {
+        if (count($items) > self::ITEMS_LIMIT) {
+            throw NumberOfElementalTypesIsGreaterThanExpectedException::makeByItemsLimit(self::ITEMS_LIMIT);
+        }
+
         /** @var ElementalType $item */
         foreach ($items as $item) {
             if (!$item instanceof ElementalType) {
-                throw ElementalTypeCollectionHasInvalidItemException::make();
+                throw ElementalTypesContainsInvalidItemException::make();
             }
         }
     }
@@ -33,7 +40,7 @@ final class ElementalTypeCollection extends AbstractCollection
     {
         $items = array_map(function (mixed $value): ElementalType {
             if (!is_string($value)) {
-                throw ElementalTypeCollectionHasInvalidItemException::make();
+                throw ElementalTypesContainsInvalidItemException::make();
             }
 
             return new ElementalType($value);

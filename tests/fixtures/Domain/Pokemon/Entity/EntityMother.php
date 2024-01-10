@@ -10,7 +10,7 @@ use App\Domain\Pokemon\Entity\Pokemon;
 use App\Domain\Pokemon\Entity\Specie;
 use App\Domain\Pokemon\ValueObject\SpecieName;
 use App\Domain\Pokemon\ValueObject\PokemonNickname;
-use App\Domain\Pokemon\ValueObject\ElementalTypeCollection;
+use App\Domain\Pokemon\ValueObject\ElementalTypes;
 use App\Tests\Fixtures\Domain\Common\ValueObject\ValueObjectMother as CommonValueObjectMother;
 use App\Tests\Fixtures\Domain\Pokemon\ValueObject\ValueObjectMother as PokemonValueObjectMother;
 
@@ -19,7 +19,7 @@ final class EntityMother
     public static function makeSpecie(
         ?Id $id = null,
         ?SpecieName $name = null,
-        ?ElementalTypeCollection $types = null
+        ?ElementalTypes $types = null
     ): Specie {
         return new Specie(
             id: $id,
@@ -31,12 +31,12 @@ final class EntityMother
     public static function makeDefaultSpecie(
         ?Id $id = null,
         ?SpecieName $name = null,
-        ?ElementalTypeCollection $types = null
+        ?ElementalTypes $types = null
     ): Specie {
         return new Specie(
             id: $id ?? CommonValueObjectMother::makeId(),
             name: $name ?? PokemonValueObjectMother::makeSpecieName(),
-            types: $types ?? PokemonValueObjectMother::makeElementalTypeCollection()
+            types: $types ?? PokemonValueObjectMother::makeElementalTypes()
         );
     }
 
