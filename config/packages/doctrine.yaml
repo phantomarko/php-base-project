@@ -3,7 +3,7 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
         types:
-            custom_id: App\Infrastructure\Common\Orm\CustomType\IdCustomType
+            custom_id: App\Infrastructure\Common\Orm\Doctrine\CustomType\IdCustomType
             specie_name: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\SpecieNameCustomType
             elemental_types: App\Infrastructure\Pokemon\Orm\Doctrine\CustomType\ElementalTypesCustomType
     orm:

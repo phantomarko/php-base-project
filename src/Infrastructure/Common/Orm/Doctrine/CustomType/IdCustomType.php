@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\Orm\CustomType;
+namespace App\Infrastructure\Common\Orm\Doctrine\CustomType;
 
 use App\Domain\Common\ValueObject\Id;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
