@@ -7,6 +7,7 @@ use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler;
 use App\Ui\Api\Common\Controller\AbstractController;
 use App\Ui\Api\Common\Response\ResourceCreatedResponse;
 use App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter;
+use League\Tactician\CommandBus;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,8 @@ final class CreateSpecieController extends AbstractController
 {
     public function __construct(
         private readonly RequestToCreateSpecieCommandConverter $request_converter,
-        private readonly CreateSpecieHandler $handler
+        private readonly CreateSpecieHandler $handler,
+        private readonly CommandBus $bus
     ) {
     }
 
@@ -33,7 +35,7 @@ final class CreateSpecieController extends AbstractController
     )]
     public function __invoke(Request $request): Response
     {
-        $this->handler->handle($this->request_converter->execute($request));
+        $this->bus->handle($this->request_converter->execute($request));
 
         return $this->makeResourceCreatedResponse();
     }

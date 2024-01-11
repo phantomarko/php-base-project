@@ -1,23 +1,48 @@
 parameters:
+  tactician.mappings:
+    App\Application\Pokemon\Command\CreateSpecie\CreateSpecieCommand: App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler
 
 services:
   _defaults:
     autowire: false
     autoconfigure: false
 
+  App\Infrastructure\Common\Bus\Tactician\Middleware\CommandHandlerMiddlewareFactory:
+    arguments:
+      - '@service_container'
+      - '%tactician.mappings%'
+
+  League\Tactician\Handler\CommandHandlerMiddleware:
+    factory:
+      - '@App\Infrastructure\Common\Bus\Tactician\Middleware\CommandHandlerMiddlewareFactory'
+      - make
+
+  League\Tactician\Doctrine\ORM\TransactionMiddleware:
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  League\Tactician\CommandBus:
+    arguments:
+      - [
+          '@League\Tactician\Doctrine\ORM\TransactionMiddleware',
+          '@League\Tactician\Handler\CommandHandlerMiddleware'
+      ]
+
   App\Ui\Api\Pokemon\Controller\CreateSpecieController:
     tags: [ 'controller.service_arguments' ]
     arguments:
       - '@App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter'
       - '@App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler'
+      - '@League\Tactician\CommandBus'
 
   App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter:
 
   App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler:
+    public: true
+    tags:
+      - { name: tactician.handler, typehints: true }
     arguments:
       - '@App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository'
-
-  App\Infrastructure\Pokemon\Repository\TmpSpecieRepository:
 
   App\Infrastructure\Pokemon\Repository\DoctrineSpecieRepository:
     arguments:

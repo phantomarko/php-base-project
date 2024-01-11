@@ -19,6 +19,5 @@ final class DoctrineSpecieRepository extends ServiceEntityRepository implements 
     public function save(Specie $specie): void
     {
         $this->getEntityManager()->persist($specie);
-        $this->getEntityManager()->flush();
     }
 }
