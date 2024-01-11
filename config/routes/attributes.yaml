@@ -1,5 +1,0 @@
-api.pokemon:
-  resource:
-    path: ../../src/Ui/Api/Pokemon/Controller/
-    namespace: App\Ui\Api\Pokemon\Controller\
-  type: attribute

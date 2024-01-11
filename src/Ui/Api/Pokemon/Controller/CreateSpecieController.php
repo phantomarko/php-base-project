@@ -11,7 +11,6 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 final class CreateSpecieController extends AbstractController
 {
@@ -21,7 +20,6 @@ final class CreateSpecieController extends AbstractController
     ) {
     }
 
-    #[Route('/api/species', name: 'api.specie.create', methods: ['POST'])]
     #[OA\Tag(name: 'species')]
     #[OA\RequestBody(
         content: new OA\JsonContent(ref: new Model(type: CreateSpecieCommand::class))
