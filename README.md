@@ -23,6 +23,9 @@ PHP Base Project
 - Doctrine
   - ORM
   - Migrations
+- Tactician
+  - Command and query bus
+  - Doctrine transactions
 
 **Tools**
 - Tests
@@ -71,7 +74,7 @@ PHP Base Project
     - API. http://172.18.91.172:8000/api/doc
     - Adminer. http://172.18.91.172:8080/?server=db&username=Us3r&db=storage
 
-## Environment Handbook
+## Developer Handbook
 
 ### Docker
 
@@ -151,3 +154,25 @@ Run PHPUnit
 ```shell
 ./vendor/bin/phpunit
 ```
+
+## To-do
+
+* [ ] Species
+  * [ ] Add Console controller to create a Specie
+  * [ ] Add use case and API controller to delete a Specie
+  * [ ] Add use case and API controller to get a Specie
+  * [ ] Add use case and API controller to list Species
+  * [ ] Add filters to list Species
+* [ ] Pokemon 
+  * [ ] Add Pokemon mapping and custom types
+  * [ ] Add use case and API controller to create a Pokemon
+  * [ ] Add use case and API controller to edit a Pokemon
+  * [ ] Add use case and API controller to delete a Pokemon
+  * [ ] Add use case and API controller to get a Pokemon
+  * [ ] Add use case and API controller to list Pokemon
+* [ ] User and Authentication
+* [ ] Trainer extending from User
+* [ ] Persist DB changes in the MySQL Docker container
+* [ ] Format error response to JSON
+* [ ] Extract response formatting to requests Symfony subscribers
+* [ ] Automatically insert fixtures after execute migrations or insert via console command 
