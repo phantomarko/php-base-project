@@ -3,7 +3,6 @@
 namespace App\Ui\Api\Pokemon\Controller;
 
 use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieCommand;
-use App\Application\Pokemon\Command\CreateSpecie\CreateSpecieHandler;
 use App\Ui\Api\Common\Controller\AbstractController;
 use App\Ui\Api\Common\Response\ResourceCreatedResponse;
 use App\Ui\Api\Pokemon\Converter\RequestToCreateSpecieCommandConverter;
@@ -18,7 +17,6 @@ final class CreateSpecieController extends AbstractController
 {
     public function __construct(
         private readonly RequestToCreateSpecieCommandConverter $request_converter,
-        private readonly CreateSpecieHandler $handler,
         private readonly CommandBus $bus
     ) {
     }

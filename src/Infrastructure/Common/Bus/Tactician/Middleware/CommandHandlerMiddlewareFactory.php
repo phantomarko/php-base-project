@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Bus\Tactician\Middleware;
 
+use App\Infrastructure\Common\Bus\Tactician\Mapping\CommandToHandlerMapInterface;
 use League\Tactician\Container\ContainerLocator;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
@@ -13,11 +14,11 @@ use Psr\Container\ContainerInterface;
 final class CommandHandlerMiddlewareFactory
 {
     /**
-     * @param array<string, string> $mappings array of mappings with the command as key holding the handler as value
+     * @param CommandToHandlerMapInterface[] $command_to_handler_maps
      */
     public function __construct(
         private readonly ContainerInterface $container,
-        private readonly array $mappings
+        private readonly array $command_to_handler_maps
     ) {
     }
 
@@ -25,7 +26,7 @@ final class CommandHandlerMiddlewareFactory
     {
         $containerLocator = new ContainerLocator(
             $this->container,
-            $this->mappings
+            $this->getMappings()
         );
 
         return new CommandHandlerMiddleware(
@@ -33,5 +34,14 @@ final class CommandHandlerMiddlewareFactory
             $containerLocator,
             new HandleInflector()
         );
+    }
+
+    private function getMappings(): array
+    {
+        $mappings = [];
+        foreach ($this->command_to_handler_maps as $map) {
+            $mappings = array_merge($mappings, $map->get());
+        }
+        return $mappings;
     }
 }
