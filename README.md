@@ -163,7 +163,6 @@ Run PHPUnit
 * [ ] Format error response to JSON
 * [ ] Extract response formatting to requests Symfony subscribers to decouple format from controllers
 * [ ] Refactor DI to decouple it from the base framework
-* [ ] Refactor Routing to decouple it from the base framework
 * [ ] Find a decoupled way to expose an API doc using OAS
 * [ ] Validate requests against OAS
 

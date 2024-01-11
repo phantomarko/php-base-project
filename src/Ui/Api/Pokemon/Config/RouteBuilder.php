@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ui\Api\Pokemon\Route;
+namespace App\Ui\Api\Pokemon\Config;
 
 use App\Infrastructure\Common\Route\Symfony\RouteBuilderInterface;
 use App\Ui\Api\Pokemon\Controller\CreateSpecieController;

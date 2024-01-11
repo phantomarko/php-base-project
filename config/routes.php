@@ -3,7 +3,7 @@
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 $route_builders = [
-    new \App\Ui\Api\Pokemon\Route\RouteBuilder(),
+    new \App\Ui\Api\Pokemon\Config\RouteBuilder(),
 ];
 
 return function (RoutingConfigurator $routes) use ($route_builders): void {
