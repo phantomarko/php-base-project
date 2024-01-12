@@ -1,0 +1,1 @@
+INSERT INTO `species` VALUES (6,'CHARIZARD','[\"FIRE\",\"FLYING\"]'),(149,'DRAGONITE','[\"DRAGON\",\"FLYING\"]');

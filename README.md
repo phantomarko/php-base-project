@@ -74,7 +74,7 @@ PHP Base Project
    
 6. Access the web server or the containers using 127.0.0.1 or the machine IP as host
     - API. http://172.18.91.172:8000/api/doc
-    - Adminer. http://172.18.91.172:8080/?server=db&username=Us3r&db=storage
+    - Adminer. http://172.18.91.172:8080/?server=db&username=root&db=storage
 
 ## Developer Handbook
 
@@ -98,6 +98,18 @@ docker compose down
 Prune
 ```shell
 docker system prune -a --volumes
+```
+
+### Seeds
+
+Generate
+```shell
+docker exec base_project-db-1 sh -c 'exec mysqldump storage species --no-create-info --compact -uroot -p"$MYSQL_ROOT_PASSWORD"' > seeds/storage.sql
+```
+
+Import
+```shell
+docker exec -i base_project-db-1 sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
 ```
 
 ### Migrations
@@ -167,7 +179,7 @@ Run PHPUnit
 * [ ] Validate requests against OAS
 
 ### Environment and data
-* [ ] Automatically insert fixtures after execute migrations or insert via console command (`docker exec` workaround)
+* [ ] Create commands to wrap the import/generation of the seeds
 * [ ] Use Docker as web server instead of Symfony CLI
 
 ### Endpoints and business logic
