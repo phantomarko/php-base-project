@@ -8,6 +8,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
 ###> phpstorm ###
 /.idea/
 ###< phpstorm ###
@@ -21,3 +22,7 @@
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+###> docker ###
+/.docker/data/
+###< docker ###

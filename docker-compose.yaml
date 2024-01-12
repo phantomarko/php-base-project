@@ -5,6 +5,8 @@ services:
     command: --default-authentication-plugin=caching_sha2_password
     ports:
       - 3306:3306
+    volumes:
+      - ./.docker/data/mysql:/var/lib/mysql
     environment:
       MYSQL_USER: Us3r
       MYSQL_PASSWORD: S0m3P4ssw0rd

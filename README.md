@@ -92,7 +92,7 @@ docker compose up -d
 
 Stop
 ```shell
-docker compose down --remove-orphans
+docker compose down
 ```
 
 Prune
@@ -167,8 +167,7 @@ Run PHPUnit
 * [ ] Validate requests against OAS
 
 ### Environment and data
-* [ ] Automatically insert fixtures after execute migrations or insert via console command
-* [ ] Persist DB changes in the MySQL Docker container
+* [ ] Automatically insert fixtures after execute migrations or insert via console command (`docker exec` workaround)
 * [ ] Use Docker as web server instead of Symfony CLI
 
 ### Endpoints and business logic
