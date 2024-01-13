@@ -47,7 +47,7 @@ PHP Base Project
 
 ## Set Up
 
-1. Create a copy of `.env.example` as `.env` and assign a value to `APP_SECRET`
+1. Create a copy of `.env.example` as `.env` and assign values to `APP_SECRET` and `MYSQL_ROOT_PASSWORD`
     ```shell
     cp .env.example .env
     ```
@@ -61,18 +61,23 @@ PHP Base Project
     ```shell
     docker compose build --no-cache --pull && docker compose up -d
     ```
-   
+
 4. Execute all DB migrations.
     ```shell
     php bin/console doctrine:migrations:migrate
     ```
 
-5. Start web server
+5. Import seeds.
+    ```shell
+    docker exec -i base_project-db-1 sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
+    ```
+
+6. Start web server
     ```shell
     symfony server:start
     ```
    
-6. Access the web server or the containers using 127.0.0.1 or the machine IP as host
+7. Access the web server or the containers using 127.0.0.1 or the machine IP as host
     - API. http://172.18.91.172:8000/api/doc
     - Adminer. http://172.18.91.172:8080/?server=db&username=root&db=storage
 
