@@ -4,7 +4,6 @@ PHP Base Project
 ## Requirements
 
 - PHP 8.3 and its extensions
-- Symfony CLI 5
 - Docker 24 and Docker Compose 2
 - Composer 2
 
@@ -40,10 +39,10 @@ PHP Base Project
 
 **Environment**
 - Docker
+  - Nginx
+  - PHP-FPM
   - MySQL
   - Adminer
-- Symfony CLI
-  - Web server 
 
 ## Set Up
 
@@ -64,22 +63,17 @@ PHP Base Project
 
 4. Execute all DB migrations.
     ```shell
-    php bin/console doctrine:migrations:migrate
+    docker exec -i php sh -c 'php bin/console doctrine:migrations:migrate'
     ```
 
-5. Import seeds.
+5. (Optional) Import seeds.
     ```shell
-    docker exec -i base_project-db-1 sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
-    ```
-
-6. Start web server
-    ```shell
-    symfony server:start
+    docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
     ```
    
-7. Access the web server or the containers using 127.0.0.1 or the machine IP as host
+6. Access the web server or the containers using 127.0.0.1 or the machine IP as host
     - API. http://172.18.91.172:8000/api/doc
-    - Adminer. http://172.18.91.172:8080/?server=db&username=root&db=storage
+    - Adminer. http://172.18.91.172:8080/?server=mysql&username=root&db=storage
 
 ## Developer Handbook
 
@@ -109,12 +103,12 @@ docker system prune -a --volumes
 
 Generate
 ```shell
-docker exec base_project-db-1 sh -c 'exec mysqldump storage species --no-create-info --compact -uroot -p"$MYSQL_ROOT_PASSWORD"' > seeds/storage.sql
+docker exec mysql sh -c 'exec mysqldump storage species --no-create-info --compact -uroot -p"$MYSQL_ROOT_PASSWORD"' > seeds/storage.sql
 ```
 
 Import
 ```shell
-docker exec -i base_project-db-1 sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
+docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
 ```
 
 ### Migrations
@@ -135,21 +129,6 @@ php bin/console doctrine:migrations:execute --up 'DoctrineMigrations\{MIGRATION_
 ```
 ```shell
 php bin/console doctrine:migrations:execute --down 'DoctrineMigrations\{MIGRATION_CLASS}'
-```
-
-### Symfony CLI
-
-Start server
-```shell
-symfony server:start
-```
-
-Install and uninstall CA certificates to allow https
-```shell
-symfony server:ca:install
-```
-```shell
-symfony server:ca:uninstall
 ```
 
 ### Code quality
@@ -184,8 +163,9 @@ Run PHPUnit
 * [ ] Validate requests against OAS
 
 ### Environment and data
+* [ ] Create command to wrap the migrations execution
 * [ ] Create commands to wrap the import/generation of the seeds
-* [ ] Use Docker as web server instead of Symfony CLI
+* [ ] Optimize docker containers and config
 
 ### Endpoints and business logic
 * [ ] Move Console to proper UI folder

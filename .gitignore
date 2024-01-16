@@ -24,5 +24,5 @@
 ###< squizlabs/php_codesniffer ###
 
 ###> docker ###
-/.docker/data/
+/.docker/mysql/data
 ###< docker ###

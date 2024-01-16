@@ -1,16 +1,35 @@
 version: '3.1'
 services:
-  db:
+  php:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    container_name: php
+    volumes:
+      - ./:/var/www
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+  nginx:
+    image: nginx:1.25
+    container_name: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
+  mysql:
     image: mysql:8.2
+    container_name: mysql
     command: --default-authentication-plugin=caching_sha2_password
     ports:
       - 3306:3306
     volumes:
-      - ./.docker/data/mysql:/var/lib/mysql
+      - ./.docker/mysql/data:/var/lib/mysql
     environment:
       - 'MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
       - 'MYSQL_DATABASE=storage'
   adminer:
     image: adminer:4.8.1
+    container_name: adminer
     ports:
       - 8080:8080
