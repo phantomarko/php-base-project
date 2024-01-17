@@ -94,6 +94,16 @@ Stop
 docker compose down
 ```
 
+Access container shell
+```shell
+docker compose exec {CONTAINER_NAME} bash
+```
+
+Execute command from outside the container
+```shell
+docker exec -i {CONTAINE_NAME} sh -c '{COMMAND}'
+```
+
 Prune
 ```shell
 docker system prune -a --volumes
@@ -113,6 +123,8 @@ docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' 
 
 ### Migrations
 
+These commands have to be executed inside the PHP container or outside using `docker exec`.
+
 Execute all
 ```shell
 php bin/console doctrine:migrations:migrate
@@ -121,14 +133,6 @@ php bin/console doctrine:migrations:migrate
 Generate
 ```shell
 php bin/console doctrine:migrations:generate
-```
-
-Execute one or more
-```shell
-php bin/console doctrine:migrations:execute --up 'DoctrineMigrations\{MIGRATION_CLASS}'
-```
-```shell
-php bin/console doctrine:migrations:execute --down 'DoctrineMigrations\{MIGRATION_CLASS}'
 ```
 
 ### Code quality
