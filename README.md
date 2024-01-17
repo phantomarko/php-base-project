@@ -71,9 +71,9 @@ PHP Base Project
     docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
     ```
    
-6. Access the web server or the containers using 127.0.0.1 or the machine IP as host
-    - API. http://172.18.91.172:8000/api/doc
-    - Adminer. http://172.18.91.172:8080/?server=mysql&username=root&db=storage
+6. Use the desired service.
+    - API. http://localhost:8000/api/doc
+    - Adminer. http://localhost:8080/?server=mysql&username=root&db=storage
 
 ## Developer Handbook
 
