@@ -1,13 +1,9 @@
 PHP Base Project
 ===
 
-## Requirements
+## Characteristics 📚
 
-- PHP 8.3 and its extensions
-- Docker 24 and Docker Compose 2
-- Composer 2
-
-## Characteristics
+**PHP** project template based on **Symfony** skeleton with several components and tools ready to build a solid application. The project follows **good practices** and **clean architectures** to ensure the code quality. It brings a development environment built with **Docker** and **Docker Compose** that contains all the necessary components to reduce the number of external dependencies.
 
 **Architecture**
 - SOLID
@@ -15,8 +11,9 @@ PHP Base Project
 - Hexagonal Architecture
 
 **Components**
-- Symfony (base framework)
-  - Router
+- Symfony 
+  - Skeleton
+  - Routing
   - Dependency injection
   - HTTP requests and responses
 - Doctrine
@@ -44,7 +41,11 @@ PHP Base Project
   - MySQL
   - Adminer
 
-## Set Up
+## Requirements ✅
+
+The project only requires to have installed **Docker** and **Docker Compose** in order to start working on it.
+
+## Set Up ⚙️
 
 1. Create a copy of `.env.example` as `.env` and assign values to `APP_SECRET` and `MYSQL_ROOT_PASSWORD`
     ```shell
@@ -75,9 +76,9 @@ PHP Base Project
     - API. http://localhost:8000/api/doc
     - Adminer. http://localhost:8080/?server=mysql&username=root&db=storage
 
-## Developer Handbook
+## Developer Handbook 📖
 
-### Docker
+### Docker 🐋
 
 Build
 ```shell
@@ -109,7 +110,7 @@ Prune
 docker system prune -a --volumes
 ```
 
-### Seeds
+### Seeds 🌱
 
 Generate
 ```shell
@@ -121,7 +122,7 @@ Import
 docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' < seeds/storage.sql
 ```
 
-### Migrations
+### Migrations 💾
 
 _(These commands have to be executed inside the PHP container or outside using `docker exec`)_
 
@@ -135,7 +136,7 @@ Generate
 php bin/console doctrine:migrations:generate
 ```
 
-### Code quality
+### Code quality 🔍
 
 _(These commands have to be executed inside the PHP container or outside using `docker exec`)_
 
@@ -159,7 +160,7 @@ Run PHPUnit
 ./vendor/bin/phpunit
 ```
 
-## To-do
+## To-Do List 📃
 
 ### Components and architecture
 * [ ] Format error response to JSON
