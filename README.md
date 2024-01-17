@@ -51,19 +51,19 @@ PHP Base Project
     cp .env.example .env
     ```
 
-2. Install composer dependencies
-    ```shell
-    composer install
-    ```
-
-3. Build and start docker containers
+2. Build and start docker containers
     ```shell
     docker compose build --no-cache --pull && docker compose up -d
     ```
 
+3. Install composer dependencies
+    ```shell
+    docker exec php sh -c 'composer install'
+    ```
+
 4. Execute all DB migrations.
     ```shell
-    docker exec -i php sh -c 'php bin/console doctrine:migrations:migrate'
+    docker exec php sh -c 'php bin/console doctrine:migrations:migrate -n'
     ```
 
 5. (Optional) Import seeds.
@@ -123,11 +123,11 @@ docker exec -i mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" storage' 
 
 ### Migrations
 
-These commands have to be executed inside the PHP container or outside using `docker exec`.
+_(These commands have to be executed inside the PHP container or outside using `docker exec`)_
 
 Execute all
 ```shell
-php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:migrate -n
 ```
 
 Generate
@@ -136,6 +136,8 @@ php bin/console doctrine:migrations:generate
 ```
 
 ### Code quality
+
+_(These commands have to be executed inside the PHP container or outside using `docker exec`)_
 
 Analyze and test project (psalm, phpcs and phpunit)
 ```shell
