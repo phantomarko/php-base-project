@@ -160,7 +160,7 @@ Run PHPUnit
 ### Environment and data
 * [ ] Create command to wrap the migrations execution
 * [ ] Create commands to wrap the import/generation of the seeds
-* [ ] Optimize docker containers and config
+* [ ] Add xdebug to php image
 
 ### Endpoints and business logic
 * [ ] Move Console to proper UI folder
