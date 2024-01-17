@@ -11,7 +11,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "composer code:check"
+                "action": "docker exec php sh -c 'composer code:check'"
             }
         ]
     },
