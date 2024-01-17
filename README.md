@@ -5,41 +5,29 @@ PHP Base Project
 
 **PHP** project template based on **Symfony** skeleton with several components and tools ready to build a solid application. The project follows **good practices** and **clean architectures** to ensure the code quality. It brings a development environment built with **Docker** and **Docker Compose** that contains all the necessary components to reduce the number of external dependencies.
 
-**Architecture**
-- SOLID
-- DDD
-- Hexagonal Architecture
+- **Architecture and Design**
+  - SOLID
+  - DDD
+  - Hexagonal Architecture
 
-**Components**
-- Symfony 
-  - Skeleton
-  - Routing
-  - Dependency injection
-  - HTTP requests and responses
-- Doctrine
-  - ORM
-  - Migrations
-- Tactician
-  - Command and query bus
-  - Doctrine transactions
-- Nelmio API Doc
-  - Expose API documentation via web
+- **Components**
+  - Project Skeleton > Symfony
+  - Routing > Symfony
+  - Dependency Injection > Symfony
+  - Request and Responses > Symfony
+  - CQRS > League Tactician
+  - ORM > Doctrine
+  - Migrations > Doctrine Migrations
+  - API Doc > Nelmio API Doc
 
-**Tools**
-- Tests
-  - PHPUnit
-- Analysis
-  - Psalm
-  - PHP Code Sniffer
-- Git
-  - Captain hook
+- **Tools**
+  - Unit Tests > PHPUnit
+  - Analysis > Psalm & PHP Code Sniffer
+  - Git Hooks > Captain hook
 
-**Environment**
-- Docker
-  - Nginx
-  - PHP-FPM
-  - MySQL
-  - Adminer
+- **Docker Environment**
+  - Web server > NGINX & PHP-FPM images
+  - Database > MySQL & Adminer (Management tool)
 
 ## Requirements ✅
 
