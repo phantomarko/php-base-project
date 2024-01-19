@@ -70,4 +70,4 @@ Open [developer-handbook.md](docs/developer-handbook.md)
 
 ## To-Do List 📃
 
-Open [to-do.md](docs/developer-handbook.md)
+Open [to-do.md](docs/to-do.md)
